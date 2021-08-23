@@ -22,3 +22,5 @@
 -> com.unifimes.Aula02.Exercício01 (Exerício de verificação de aprendizado)
 
 -> com.unifimes.Aula02.Exercício02
+
+# O conhecimento não deve ser privado!!!
