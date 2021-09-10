@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.unifimes.Aula07.Exemplo01;
+package com.unifimes.Aula10.Exemplo01;
 
 import java.util.Scanner;
 
@@ -11,86 +11,83 @@ import java.util.Scanner;
  *
  * @author alencarburiti
  */
-public class LS_Nao_Ordenada {
-
-    public static class Lista {
-
+public class LD_Nao_Ordenada {
+    
+    public static class Lista{        
+        public Lista ant;
         public int num;
         public Lista prox;
     }
-
+    
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-
         Lista inicio = null;
         Lista fim = null;
+        Lista anterior = null;
+        Lista proximo = null;
         Lista aux;
-        Lista anterior;
         int operacao;
         int numero;
-        int posicao = 1;
         int achou = 0;
-
-        do {
+        int posicao = 1;
+        
+        do{
             System.out.println("MENU DE OPÇÕES");
             System.out.println("1 - Inserir no inicio da lista");
             System.out.println("2 - Inserir no fim da lista");
             System.out.println("3 - Listar itens");
             System.out.println("4 - Remover item da lista");
             System.out.println("6 - Sair");
-
-            //Verifico qual a opção o usuário digitou
+            
             operacao = teclado.nextInt();
-
-            // # Inicio operaçao de inserir no início da Lista
-            if (operacao == 1) {
+            
+            if (operacao == 1){
                 System.out.println("Digite o número a ser inserido no início da lista");
                 Lista novo = new Lista();
                 novo.num = teclado.nextInt();
-                if (inicio == null) {
+                if (inicio == null){
                     inicio = novo;
                     fim = novo;
-                    fim.prox = null;
-                } else {
+                    novo.prox = null;
+                    novo.ant = null;
+                } else{
                     novo.prox = inicio;
+                    inicio.ant = novo;
+                    novo.ant = null;
                     inicio = novo;
                 }
             }
-            // # Fim operaçao de inserir no início da Lista
-
-            // # Inicio operaçao de inserir no fim da Lista
-            if (operacao == 2) {
-                System.out.println("Digite um número para ser inserido no fim da fila");
+            if (operacao == 2){
+                System.out.println("Digite o número a ser inserido no início da lista");
                 Lista novo = new Lista();
-                novo.num = teclado.nextInt();
-
-                if (fim == null) {
+                
+                if( inicio == null){
                     inicio = novo;
                     fim = novo;
-                    fim.prox = null;
-                } else {
-                    fim.prox = novo;
-                    fim = novo;
-                    fim.prox = null;
+                    novo.prox = null;
+                    novo.ant = null; 
+                }else{
+                   fim.prox = novo;
+                   novo.ant = fim;
+                   novo.prox = null;
+                   fim = novo;
                 }
+                
             }
-            // # Fim operaçao de inserir no fim da Lista
-            // # Inicio lista itens 
-            if (operacao == 3) {
-                System.out.println("Listando itens ... aguarde");
-                if (inicio == null) {
+            //# Imprimir lista
+            if (operacao == 3){
+                if (inicio == null){
                     System.out.println("Lista vazia");
-                } else {
+                }else{
+                    System.out.println("Imprimindo lista");
+                    
                     aux = inicio;
-                    while (aux != null) {
-                        System.out.println("A posicao da lista " + posicao + " tem o número " + aux.num);
+                    while (aux != null){
+                        System.out.println(aux.num);
                         aux = aux.prox;
-                        posicao++;
                     }
                 }
             }
-            // # Fim lista itens 
-            // # Inicio remover item da lista
             if (operacao == 4) {
                 if (inicio == null) {
                     System.out.println("Lista vazia");
@@ -127,7 +124,7 @@ public class LS_Nao_Ordenada {
                     }
                 }
             }
-            // # Fim remover item da lista
-        } while (operacao != 6);
+        }while(operacao != 6);
     }
+    
 }
